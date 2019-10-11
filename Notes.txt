@@ -1,0 +1,5 @@
+HTTP Request:
+    When you go to duckduckgo.com, you are sending an HTTP request that says "send me the contents of your website at this address"
+    That's doing a "get" request
+    Uses HTTP to make that request
+
