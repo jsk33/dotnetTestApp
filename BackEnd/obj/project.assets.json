@@ -13423,11 +13423,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jason/Projects/ConferencePlanner2019/BackEnd/BackEnd.csproj",
+      "projectUniqueName": "/Users/jason/Projects/dotnetTestApp/BackEnd/BackEnd.csproj",
       "projectName": "BackEnd",
-      "projectPath": "/Users/jason/Projects/ConferencePlanner2019/BackEnd/BackEnd.csproj",
+      "projectPath": "/Users/jason/Projects/dotnetTestApp/BackEnd/BackEnd.csproj",
       "packagesPath": "/Users/jason/.nuget/packages/",
-      "outputPath": "/Users/jason/Projects/ConferencePlanner2019/BackEnd/obj/",
+      "outputPath": "/Users/jason/Projects/dotnetTestApp/BackEnd/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -13444,8 +13444,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "/Users/jason/Projects/ConferencePlanner2019/ConferenceDTO/ConferenceDTO.csproj": {
-              "projectPath": "/Users/jason/Projects/ConferencePlanner2019/ConferenceDTO/ConferenceDTO.csproj"
+            "/Users/jason/Projects/dotnetTestApp/ConferenceDTO/ConferenceDTO.csproj": {
+              "projectPath": "/Users/jason/Projects/dotnetTestApp/ConferenceDTO/ConferenceDTO.csproj"
             }
           }
         }
