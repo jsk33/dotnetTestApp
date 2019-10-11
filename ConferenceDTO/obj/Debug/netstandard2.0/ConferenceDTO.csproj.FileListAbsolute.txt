@@ -1,9 +1,0 @@
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/bin/Debug/netstandard2.0/ConferenceDTO.deps.json
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/bin/Debug/netstandard2.0/ConferenceDTO.dll
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/bin/Debug/netstandard2.0/ConferenceDTO.pdb
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/obj/Debug/netstandard2.0/ConferenceDTO.csprojAssemblyReference.cache
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/obj/Debug/netstandard2.0/ConferenceDTO.csproj.CoreCompileInputs.cache
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/obj/Debug/netstandard2.0/ConferenceDTO.AssemblyInfoInputs.cache
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/obj/Debug/netstandard2.0/ConferenceDTO.AssemblyInfo.cs
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/obj/Debug/netstandard2.0/ConferenceDTO.dll
-/Users/jason/Projects/dotnetTestApp/ConferenceDTO/obj/Debug/netstandard2.0/ConferenceDTO.pdb
