@@ -11,3 +11,12 @@ You can also use lambda expressions when you write LINQ query expressions as the
     var squaredNumbers = numbers.Select(x => x * x);
     Console.WriteLine(string.Join(" ", squaredNumbers));
     // output: 4, 9, 16, 25
+
+Expression lambda:
+    (input-parameters) => expression
+    returns result of expression
+    Action line = () => Console.WriteLine();
+    Func<int, int, bool> testEquality = (x, y) => x == y;
+    Func<int, string, bool> isTooLong = (int x, string s) => s.Length > x;
+        sometimes compiler can't infer input types, in which case you must explicitly specify the types
+    
