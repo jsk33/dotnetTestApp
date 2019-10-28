@@ -20,3 +20,14 @@ Expression lambda:
     Func<int, string, bool> isTooLong = (int x, string s) => s.Length > x;
         sometimes compiler can't infer input types, in which case you must explicitly specify the types
     
+Statement lambda:
+    (input-parameters) => { <sequence of statements> }
+    Action<string> greet = name => 
+    { 
+        string greeting = $"Hello {name}!";
+        Console.WriteLine(greeting); 
+    };
+    greet("World");
+    //output: Hello World!
+    statement lambdas cannot be used to create expression trees.
+
