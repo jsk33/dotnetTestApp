@@ -31,3 +31,61 @@ Statement lambda:
     //output: Hello World!
     statement lambdas cannot be used to create expression trees.
 
+Async lambda:
+    The following Windows Forms example contains an event handler that calls and awaits an async method: ExampleMethodAsync
+
+        public partial class Form1 : Form
+        {
+            public Form1()
+            {
+                InitializeComponent();
+                button1.Click += button1_Click;
+            }
+
+            private async void button1_Click(object sender, EventArgs e)
+            {
+                await ExampleMethodAsync();
+                textBox1.Text += "\r\nControl returned to Click event handler.\n";
+            }
+
+            private async Task ExampleMethodAsync()
+            {
+                // The following line simulates a task-returning asynchronous process.
+                await Task.Delay(1000);
+            }
+        }
+
+    You can add the same event handler by using an async lambda. To add this handler, add an async modifier before the lambda parameter list
+
+        public partial class Form1 : Form
+        {
+            public Form1()
+            {
+                InitializeComponent();
+                button1.Click += async (sender, e) =>
+                {
+                    await ExampleMethodAsync();
+                    textBox1.Text += "\r\nControl returned to Click event handler.\n";
+                };
+            }
+
+            private async Task ExampleMethodAsync()
+            {
+                // The following line simulates a task-returning asynchronous process.
+                await Task.Delay(1000);
+            }
+        }
+
++ and += operators are supported by delegate types
+
+    Action a = () => Console.Write("a");
+    Action b = () => Console.Write("b");
+    Action ab = a + b;
+    ab();  // output: ab
+
+    Action printer = () => Console.Write("a");
+    printer();  // output: a
+
+    Console.WriteLine();
+    printer += () => Console.Write("b");
+    printer();  // output: ab

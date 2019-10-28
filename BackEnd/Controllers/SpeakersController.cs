@@ -31,6 +31,7 @@ namespace BackEnd.Controllers
 
             // IEnumerable says: it's a collection that can be read through by going forward only
             // ActionResult says: format this into something the web can read
+            // ActionResult is a return type of a controller method, also called an action method. It returns models to views, files streams, redirect to other controllers, whatever is necessary for the task at hand
             // Task says: do this asynchronously/run in background, but make sure you come back and return this
         }
 
