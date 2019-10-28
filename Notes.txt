@@ -3,3 +3,11 @@ HTTP Request:
     That's doing a "get" request
     Uses HTTP to make that request
 
+
+You can use lambda expressions in any code that requires instances of delegate types or expression trees.
+For example, as an argument to the Task.Run(Action) method to pass the code that should be executed in the background.
+You can also use lambda expressions when you write LINQ query expressions as the following example shows:
+    int[] numbers = {2, 3, 4, 5};
+    var squaredNumbers = numbers.Select(x => x * x);
+    Console.WriteLine(string.Join(" ", squaredNumbers));
+    // output: 4, 9, 16, 25
