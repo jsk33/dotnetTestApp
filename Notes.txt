@@ -89,3 +89,6 @@ Async lambda:
     Console.WriteLine();
     printer += () => Console.Write("b");
     printer();  // output: ab
+
+?. = null conditional operator
+    evaluate the first operand; if that's null, stop, with a result of null. Otherwise, evaluate the second operand (as a member access of the first operand)

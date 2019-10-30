@@ -25,9 +25,9 @@ namespace BackEnd.Controllers
 
         // GET: api/Speakers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Speaker>>> GetSpeakers()
+        public async Task<ActionResult<List<ConferenceDTO.SpeakerResponse>>> GetSpeakers()
         {
-            var speakers = await _db.Speakers.AsNoTracking().Include(s => s.SessionSpeakers).ThenInclude(ss => ss.Session).ToListAsync();
+            var speakers = await _db.Speakers.AsNoTracking().Include(s => s.SessionSpeakers).ThenInclude(ss => ss.Session).Select(s => s.MapSpeakerResponse()).ToListAsync();
             return speakers;
 
             // IEnumerable says: it's a collection that can be read through by going forward only
@@ -40,17 +40,18 @@ namespace BackEnd.Controllers
 
         // GET: api/Speakers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Speaker>> GetSpeaker(int id)
+        public async Task<ActionResult<ConferenceDTO.SpeakerResponse>> GetSpeaker(int id)
         {
-            var speaker = await _db.Speakers.FindAsync(id);
+            var speaker = await _db.Speakers.AsNoTracking().Include(s => s.SessionSpeakers).ThenInclude(ss => ss.Session).SingleOrDefaultAsync(s => s.ID == id);
 
             if (speaker == null)
             {
                 return NotFound();
                 // 404: file not found status code
             }
+            var result = speaker.MapSpeakerResponse();
 
-            return speaker;
+            return result;
         }
 
         // PUT: api/Speakers/5
