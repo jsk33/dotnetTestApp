@@ -14,39 +14,44 @@ namespace BackEnd.Controllers
     [ApiController]
     public class SpeakersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
 
         // we are passing in a required dependency into the constructor so that other methods can use it
         // this is called: Dependency Injection
-        public SpeakersController(ApplicationDbContext context)
+        public SpeakersController(ApplicationDbContext db)
         {
-            _context = context;
+            _db = db;
         }
 
         // GET: api/Speakers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Speaker>>> GetSpeakers()
+        public async Task<ActionResult<List<ConferenceDTO.SpeakerResponse>>> GetSpeakers()
         {
-            return await _context.Speakers.ToListAsync();
+            var speakers = await _db.Speakers.AsNoTracking().Include(s => s.SessionSpeakers).ThenInclude(ss => ss.Session).Select(s => s.MapSpeakerResponse()).ToListAsync();
+            return speakers;
 
             // IEnumerable says: it's a collection that can be read through by going forward only
             // ActionResult says: format this into something the web can read
+            // ActionResult is a return type of a controller method, also called an action method. It returns models to views, files streams, redirect to other controllers, whatever is necessary for the task at hand
             // Task says: do this asynchronously/run in background, but make sure you come back and return this
+
+
         }
 
         // GET: api/Speakers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Speaker>> GetSpeaker(int id)
+        public async Task<ActionResult<ConferenceDTO.SpeakerResponse>> GetSpeaker(int id)
         {
-            var speaker = await _context.Speakers.FindAsync(id);
+            var speaker = await _db.Speakers.AsNoTracking().Include(s => s.SessionSpeakers).ThenInclude(ss => ss.Session).SingleOrDefaultAsync(s => s.ID == id);
 
             if (speaker == null)
             {
                 return NotFound();
                 // 404: file not found status code
             }
+            var result = speaker.MapSpeakerResponse();
 
-            return speaker;
+            return result;
         }
 
         // PUT: api/Speakers/5
@@ -59,11 +64,11 @@ namespace BackEnd.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(speaker).State = EntityState.Modified;
+            _db.Entry(speaker).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,8 +89,8 @@ namespace BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Speaker>> PostSpeaker(Speaker speaker)
         {
-            _context.Speakers.Add(speaker);
-            await _context.SaveChangesAsync();
+            _db.Speakers.Add(speaker);
+            await _db.SaveChangesAsync();
 
             return CreatedAtAction("GetSpeaker", new { id = speaker.ID }, speaker);
         }
@@ -94,21 +99,21 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Speaker>> DeleteSpeaker(int id)
         {
-            var speaker = await _context.Speakers.FindAsync(id);
+            var speaker = await _db.Speakers.FindAsync(id);
             if (speaker == null)
             {
                 return NotFound();
             }
 
-            _context.Speakers.Remove(speaker);
-            await _context.SaveChangesAsync();
+            _db.Speakers.Remove(speaker);
+            await _db.SaveChangesAsync();
 
             return speaker;
         }
 
         private bool SpeakerExists(int id)
         {
-            return _context.Speakers.Any(e => e.ID == id);
+            return _db.Speakers.Any(e => e.ID == id);
         }
     }
 }

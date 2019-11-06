@@ -15,7 +15,7 @@ namespace ConferenceDTO
         public string Bio { get; set; }
 
         [StringLength(1000)]
-        public virtual string Website { get; set; }
+        public virtual string WebSite { get; set; }
 
 
     }
